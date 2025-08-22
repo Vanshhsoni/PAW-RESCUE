@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volunteer Submissions - Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/admin_volunteer_list.css' %}">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-container">
+            <a href="{% url 'adminpanel:admin_dashboard' %}" class="logo-group">
+                <img src="{% static 'images/logo.png' %}" alt="Paw Rescue Logo">
+                <h1>ADMIN PANEL</h1>
+            </a>
+            <nav class="admin-nav" id="admin-nav">
+                <a href="{% url 'adminpanel:admin_dashboard' %}">Dashboard</a>
+                <a href="{% url 'adminpanel:user_adoption' %}">Manage Adoptions</a>
+                <a href="{% url 'adminpanel:volunteer_list' %}" class="active">Volunteer Requests</a>
+                <a href="{% url 'adminpanel:admin_logout' %}">Logout</a>
+            </nav>
+            <button class="hamburger" id="hamburger-btn">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="main-title">Volunteer Submissions</h2>
+        
+        <div class="table-wrapper">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>About</th>
+                        <th>Phone</th>
+                        <th>Submitted On</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for volunteer in volunteers %}
+                    <tr>
+                        <td>{{ volunteer.name }}</td>
+                        <td>{{ volunteer.address }}</td>
+                        <td>{{ volunteer.about }}</td>
+                        <td>{{ volunteer.phone }}</td>
+                        <td>{{ volunteer.created_at|date:"Y-m-d, P" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="5" class="empty-message">No volunteer submissions yet.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const adminNav = document.getElementById('admin-nav');
+        hamburgerBtn.addEventListener('click', () => {
+            adminNav.classList.toggle('is-active');
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+/* 1. THEME VARIABLES & RESET (Same as other pages) */
+:root {
+    --primary-color: #e83e8c;
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --heading-color: #ffffff;
+    --text-color: #d1d1d1;
+    --border-color: #2e2e2e;
+    --error-color: #e57373; /* For error messages */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Nunito Sans', sans-serif;
+    --border-radius-box: 15px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* 2. SHARED STYLES */
+.minimal-header {
+    padding: 1.5rem 2rem;
+}
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+.logo-image {
+    height: 35px;
+}
+.logo-group h1 {
+    font-size: 1.2rem;
+    color: var(--heading-color);
+}
+
+/* 3. FORM CONTAINER & BOX */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 100px);
+}
+.form-box {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-box);
+    border: 1px solid var(--border-color);
+}
+.form-box h2 {
+    font-family: var(--font-heading);
+    color: var(--heading-color);
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+/* 4. FORM ELEMENTS */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--heading-color);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: all 0.3s ease;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.3);
+}
+
+/* 5. MESSAGES */
+.messages {
+    margin-bottom: 1.5rem;
+}
+.message {
+    padding: 12px 15px;
+    background-color: rgba(232, 62, 140, 0.1);
+    border: 1px solid rgba(232, 62, 140, 0.4);
+    border-radius: 8px;
+    color: #f7a8b8;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* 6. SUBMIT BUTTON */
+.btn-submit {
+    display: block;
+    width: 100%;
+    padding: 14px 30px;
+    border-radius: 50px;
+    background-color: var(--primary-color);
+    color: var(--heading-color);
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: var(--font-heading);
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+.btn-submit:hover {
+    background-color: #c22a72;
+    transform: translateY(-3px);
+}

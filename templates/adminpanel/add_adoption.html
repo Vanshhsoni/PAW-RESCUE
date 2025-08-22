@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Adoption Post - Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/admin_add_adoption.css' %}">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-container">
+            <a href="{% url 'adminpanel:admin_dashboard' %}" class="logo-group">
+                <img src="{% static 'images/logo.png' %}" alt="Paw Rescue Logo">
+                <h1>ADMIN PANEL</h1>
+            </a>
+            <nav class="admin-nav" id="admin-nav">
+                <a href="{% url 'adminpanel:admin_dashboard' %}">Dashboard</a>
+                <a href="{% url 'adminpanel:user_adoption' %}" class="active">Manage Adoptions</a>
+                <a href="{% url 'adminpanel:volunteer_list' %}">Volunteer Requests</a>
+                <a href="{% url 'adminpanel:admin_logout' %}">Logout</a>
+            </nav>
+            <button class="hamburger" id="hamburger-btn">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="form-wrapper">
+            <h2 class="main-title">Add New Adoption Post</h2>
+            <p class="subtitle">Fill in the details below to create a new post for the public adoption page.</p>
+            
+            <form method="POST" enctype="multipart/form-data" class="adoption-form">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="{{ form.title.id_for_label }}">Title</label>
+                    {{ form.title }}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.description.id_for_label }}">Description</label>
+                    {{ form.description }}
+                </div>
+
+                <div class="form-group">
+                    <label>Image</label>
+                    <div class="file-upload-wrapper" id="file-upload-wrapper">
+                        {{ form.image }}
+                        <label for="{{ form.image.id_for_label }}" class="file-upload-label">
+                            <div class="icon">
+                                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7"/><line x1="16" y1="5" x2="22" y2="5"/><line x1="19" y1="2" x2="19" y2="8"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                            </div>
+                            <span>Click to upload or drag & drop</span>
+                            <small>PNG, JPG, up to 10MB</small>
+                        </label>
+                        <div class="image-preview-container">
+                            <img src="#" alt="Image Preview" id="image-preview" class="image-preview">
+                            <button type="button" id="remove-image-btn" class="remove-image-btn">&times;</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <button type="submit" class="btn-submit">Add Post</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Hamburger menu toggle
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const adminNav = document.getElementById('admin-nav');
+        hamburgerBtn.addEventListener('click', () => {
+            adminNav.classList.toggle('is-active');
+        });
+
+        // Image preview logic
+        const fileInput = document.getElementById('{{ form.image.id_for_label }}');
+        const fileUploadWrapper = document.getElementById('file-upload-wrapper');
+        const imagePreview = document.getElementById('image-preview');
+        const removeImageBtn = document.getElementById('remove-image-btn');
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    imagePreview.setAttribute('src', e.target.result);
+                    fileUploadWrapper.classList.add('has-file');
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+
+        removeImageBtn.addEventListener('click', function() {
+            fileInput.value = '';
+            imagePreview.setAttribute('src', '#');
+            fileUploadWrapper.classList.remove('has-file');
+        });
+    </script>
+</body>
+</html>

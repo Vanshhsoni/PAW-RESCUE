@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Paw Rescue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <header class="site-header">
+        <a href="/" class="logo-group">
+            <img src="{% static 'images/logo.png' %}" alt="Paw Rescue Logo">
+            <h1>PAW RESCUE</h1>
+        </a>
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn-logout">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                    <polyline points="16,17 21,12 16,7"/>
+                    <line x1="21" y1="12" x2="9" y2="12"/>
+                </svg>
+            </button>
+        </form>
+    </header>
+
+    <nav class="secondary-nav-container">
+        <div class="secondary-nav">
+            <a href="{% url 'donate' %}">
+                <div class="icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                    </svg>
+                </div>
+                Donate
+            </a>
+             <a href="{% url 'location' %}">
+                <div class="icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+                </div>
+                Rescue Center
+            </a>
+            <a href="{% url 'health' %}">
+                <div class="icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+                </div>
+                Treatment & Health
+            </a>
+            <a href="{% url 'food' %}">
+                <div class="icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 22a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10Z"/>
+                        <path d="M16 22a2 2 0 0 0 2-2v-7m-5 5v-5h5l-5 5Z"/>
+                        <path d="M11 2v5h5"/>
+                        <path d="M7.5 10.5a2.5 2.5 0 0 0-5 0V12a2.5 2.5 0 0 0 5 0Z"/>
+                    </svg>
+                </div>
+                Food & Nutrition
+            </a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="statistics">
+            <div class="stat-card">
+                <div class="card-icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M5.625 1.5c-1.036 0-1.875.84-1.875 1.875v17.25c0 1.035.84 1.875 1.875 1.875h12.75c1.035 0 1.875-.84 1.875-1.875V12.75A3.75 3.75 0 0016.5 9h-1.875a.375.375 0 01-.375-.375V6.375A3.75 3.75 0 009 2.625H5.625zM12 9.375A.375.375 0 0011.625 9h-1.875a.375.375 0 00-.375.375v1.875c0 .207.168.375.375.375h1.875A.375.375 0 0012 11.25V9.375z"/></svg>
+                </div>
+                <h3>{{ report_count }}</h3>
+                <p>Total Reports</p>
+            </div>
+            <div class="stat-card">
+                <div class="card-icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-1.344-.688 15.247 15.247 0 01-1.344.688l-.022.012-.007.003h-.001M12.93 20.91l-.007.003-.022.012a15.247 15.247 0 001.344.688 15.247 15.247 0 001.344-.688l.022-.012.007-.003h.001M21 11.25a8.25 8.25 0 01-8.25 8.25h-1.5a8.25 8.25 0 01-8.25-8.25V7.5A8.25 8.25 0 0112 3.75a8.25 8.25 0 018.25 8.25v3.75z"/></svg>
+                </div>
+                <h3>{{ adoption_requests_count }}</h3>
+                <p>Adoption Requests</p>
+            </div>
+            <div class="stat-card">
+                <div class="card-icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M18 18.75a3 3 0 00-3-3H9a3 3 0 00-3 3v.5c0 .414.336.75.75.75h10.5a.75.75 0 00.75-.75v-.5zM15 12a3 3 0 11-6 0 3 3 0 016 0zM12 1.5a10.5 10.5 0 100 21 10.5 10.5 0 000-21z"/></svg>
+                </div>
+                <h3>{{ volunteer_count }}</h3>
+                <p>Active Volunteers</p>
+            </div>
+            <div class="stat-card">
+                <div class="card-icon">
+                    <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M14.25 2.25c-.247 0-.486.02-.724.058L12 3.828l-1.526-1.512a48.847 48.847 0 00-1.448-.058A4.5 4.5 0 004.5 6.75v1.508c0 .843.253 1.63.708 2.321L12 21l6.792-10.421a4.5 4.5 0 00.708-2.321V6.75a4.5 4.5 0 00-4.5-4.5z" clip-rule="evenodd" /></svg>
+                </div>
+                <h3>0 <span class="currency">INR</span></h3>
+                <p>Donations</p>
+            </div>
+        </section>
+
+        <section class="feed">
+            <h2 class="section-title">Recent Reports</h2>
+            {% for report in reports %}
+            <div class="post">
+                {% if report.image %}
+                <img class="post-image" src="{{ report.image.url }}" alt="Image for {{ report.title }}">
+                {% endif %}
+                <div class="post-content">
+                    <h3>{{ report.title }}</h3>
+                    <p>{{ report.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-message">
+                <p>No reports found. Be the first to help an animal in need!</p>
+                <a href="{% url 'report' %}" class="btn-primary">Report a Stray</a>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <nav class="primary-nav">
+        <a href="{% url 'feed' %}" class="active">
+            <div class="icon">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+            </div>
+            <span class="text">Dashboard</span>
+        </a>
+        <a href="{% url 'adoption_public' %}">
+            <div class="icon">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <span class="text">Adopt</span>
+        </a>
+        <a href="{% url 'volunteer_form' %}">
+            <div class="icon">
+                 <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3-3m0 0-3 3m3-3v12"/></svg>
+            </div>
+            <span class="text">Volunteer</span>
+        </a>
+        <a href="{% url 'report' %}">
+            <div class="icon">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/></svg>
+            </div>
+            <span class="text">Report</span>
+        </a>
+    </nav>
+</body>
+</html>

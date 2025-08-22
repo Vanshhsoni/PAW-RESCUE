@@ -1,0 +1,10 @@
+Django==5.1.6
+
+# If you plan to use Pillow for handling images in models (commonly required for media uploads)
+Pillow>=10.0.0
+
+# Optional but usually useful in Django projects
+django-crispy-forms>=2.0
+
+gunicorn
+whitenoise

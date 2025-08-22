@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Paw Rescue</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&family=Nunito+Sans:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+</head>
+<body>
+    <header class="admin-header">
+        <div class="header-container">
+            <a href="{% url 'adminpanel:admin_dashboard' %}" class="logo-group">
+                <img src="{% static 'images/logo.png' %}" alt="Paw Rescue Logo">
+                <h1>ADMIN PANEL</h1>
+            </a>
+
+            <nav class="admin-nav" id="admin-nav">
+                <a href="{% url 'adminpanel:admin_dashboard' %}" class="active">Dashboard</a>
+                <a href="{% url 'adminpanel:user_adoption' %}">Manage Adoptions</a>
+                <a href="{% url 'adminpanel:volunteer_list' %}">Volunteer Requests</a>
+                <a href="{% url 'adminpanel:admin_logout' %}">Logout</a>
+            </nav>
+
+            <button class="hamburger" id="hamburger-btn">
+                <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <h2 class="main-title">Recent Stray Reports</h2>
+
+        <section class="feed">
+            {% for report in reports %}
+            <div class="post">
+                <div class="post-header">
+                    <span>Reported on: {{ report.created_at|date:"F d, Y" }}</span>
+                </div>
+                {% if report.image %}
+                <img class="post-image" src="{{ report.image.url }}" alt="Image for {{ report.title }}">
+                {% endif %}
+                <div class="post-content">
+                    <h3>{{ report.title }}</h3>
+                    <p>{{ report.description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="empty-message">
+                <p>No new reports found.</p>
+            </div>
+            {% endfor %}
+        </section>
+    </main>
+
+    <script>
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const adminNav = document.getElementById('admin-nav');
+
+        hamburgerBtn.addEventListener('click', () => {
+            adminNav.classList.toggle('is-active');
+        });
+    </script>
+</body>
+</html>

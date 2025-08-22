@@ -1,0 +1,106 @@
+/* 1. THEME VARIABLES & RESET (Same as dashboard) */
+:root {
+    --primary-color: #e83e8c;
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --heading-color: #ffffff;
+    --text-color: #d1d1d1;
+    --border-color: #2e2e2e;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Nunito Sans', sans-serif;
+    --border-radius-box: 15px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    padding-bottom: 80px;
+}
+
+/* 2. SHARED STYLES (Navigation, Icons, Header - Same as dashboard) */
+.icon-svg { width: 24px; height: 24px; stroke: var(--heading-color); fill: none; stroke-width: 2; transition: stroke 0.2s ease; }
+.site-header { background-color: var(--surface-color); padding: 0.75rem 1.5rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border-color); }
+.logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-group img { height: 35px; }
+.logo-group h1 { font-size: 1.2rem; color: var(--heading-color); }
+.btn-logout { background: transparent; border: none; cursor: pointer; padding: 0.5rem; border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: background-color 0.2s ease; }
+.btn-logout:hover { background-color: var(--border-color); }
+.btn-logout .icon-svg { width: 22px; height: 22px; stroke: var(--text-color); }
+.btn-logout:hover .icon-svg { stroke: var(--primary-color); }
+.secondary-nav-container { background-color: var(--surface-color); padding: 0.75rem 0; overflow-x: auto; -ms-overflow-style: none; scrollbar-width: none; }
+.secondary-nav-container::-webkit-scrollbar { display: none; }
+.secondary-nav { display: flex; width: max-content; padding: 0 1.5rem; gap: 1rem; }
+.secondary-nav a { color: var(--text-color); text-decoration: none; padding: 0.5rem 1rem; border-radius: 20px; font-weight: 700; font-size: 0.9rem; white-space: nowrap; transition: all 0.2s ease-in-out; display: flex; align-items: center; gap: 8px; }
+.secondary-nav a:hover { background-color: var(--border-color); color: var(--heading-color); }
+.primary-nav { position: fixed; bottom: 0; left: 0; width: 100%; height: 70px; background-color: var(--surface-color); border-top: 1px solid var(--border-color); display: flex; justify-content: space-around; align-items: stretch; z-index: 1000; }
+.primary-nav a { display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; color: var(--text-color); font-size: 0.75rem; font-weight: 700; flex-grow: 1; height: 100%; transition: color 0.2s ease; gap: 4px; }
+.primary-nav a.active, .primary-nav a:hover { color: var(--primary-color); }
+.primary-nav a.active .icon-svg, .primary-nav a:hover .icon-svg { stroke: var(--primary-color); }
+
+/* 3. ADOPTION PAGE SPECIFIC STYLES */
+.container { max-width: 1400px; margin: 0 auto; padding: 1.5rem; }
+.main-title {
+    font-family: var(--font-heading);
+    color: var(--heading-color);
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 1rem;
+}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+.card {
+    background: var(--surface-color);
+    border-radius: var(--border-radius-box);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+.card.visible { opacity: 1; transform: translateY(0); }
+.card:hover { transform: translateY(-5px); border-color: var(--primary-color); }
+.card img { width: 100%; height: 300px; object-fit: cover; }
+.card-content { padding: 1.5rem; text-align: center; }
+.card-title { color: var(--heading-color); font-size: 1.25rem; font-weight: 700; }
+
+/* 4. OVERLAY (MODAL) STYLES */
+.overlay {
+    display: none; position: fixed; top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 2000;
+    justify-content: center; align-items: center;
+    opacity: 0; transition: opacity 0.3s ease;
+    padding: 1rem;
+}
+.overlay.visible { opacity: 1; }
+.overlay-content {
+    background: var(--surface-color);
+    padding: 2rem;
+    border-radius: var(--border-radius-box);
+    width: 100%;
+    max-width: 500px;
+    max-height: 90vh;
+    overflow-y: auto;
+    text-align: center;
+    position: relative;
+    border: 1px solid var(--border-color);
+}
+.overlay-content img { width: 100%; height: 300px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem; }
+.overlay-title { color: var(--primary-color); font-size: 1.8rem; margin-bottom: 1rem; font-family: var(--font-heading); }
+.overlay-description { color: var(--text-color); margin-bottom: 1.5rem; }
+.contact-info { font-size: 1rem; background-color: var(--bg-color); padding: 0.75rem; border-radius: 8px; }
+.close-btn {
+    position: absolute; top: 1rem; right: 1rem;
+    background: none; border: none; cursor: pointer; padding: 0.5rem;
+}
+.close-btn .icon-svg { stroke: var(--text-color); }
+.close-btn:hover .icon-svg { stroke: var(--primary-color); }

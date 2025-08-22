@@ -1,0 +1,148 @@
+/* 1. THEME VARIABLES & RESET */
+:root {
+    --primary-color: #e83e8c;      /* Vibrant Pink */
+    --bg-color: #121212;           /* Near Black Background */
+    --surface-color: #1e1e1e;       /* Slightly Lighter Gray for cards */
+    --heading-color: #ffffff;      /* Pure White for Headings */
+    --text-color: #d1d1d1;         /* Off-white for Body Text */
+    --border-color: #333;          /* Dark border color */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Nunito Sans', sans-serif;
+    --border-radius-btn: 50px;
+    --border-radius-box: 15px;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    animation: fadeInPage 0.8s ease-in-out;
+}
+
+/* 2. HEADER & LOGO */
+.minimal-header {
+    padding: 1.5rem 2rem;
+}
+.logo-group {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-decoration: none;
+    color: var(--heading-color);
+}
+.logo-image {
+    height: 40px;
+}
+h1 {
+    font-size: 1.4rem;
+}
+
+/* 3. FORM CONTAINER & BOX */
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 2rem 1rem;
+    min-height: calc(100vh - 100px); /* Adjust based on header height */
+}
+.form-box {
+    width: 100%;
+    max-width: 400px;
+    background-color: var(--surface-color);
+    padding: 2.5rem;
+    border-radius: var(--border-radius-box);
+    border: 1px solid var(--border-color);
+    animation: fadeInUp 0.8s ease-out both;
+}
+.form-box h2 {
+    font-family: var(--font-heading);
+    color: var(--heading-color);
+    text-align: center;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+/* 4. FORM ELEMENTS */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-color);
+}
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--heading-color);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: all 0.3s ease;
+}
+input[type="text"]:focus,
+input[type="password"]:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.3);
+}
+
+/* 5. BUTTON & LINKS */
+.btn {
+    display: block;
+    width: 100%;
+    padding: 14px 30px;
+    border-radius: var(--border-radius-btn);
+    background-color: var(--primary-color);
+    color: var(--heading-color);
+    font-weight: 700;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    background-color: #c22a72;
+    transform: translateY(-3px);
+}
+.form-switch {
+    text-align: center;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+}
+.form-switch a {
+    color: var(--primary-color);
+    font-weight: 700;
+    text-decoration: none;
+}
+.form-switch a:hover {
+    text-decoration: underline;
+}
+
+/* 6. MESSAGES */
+.messages {
+    margin-bottom: 1.5rem;
+}
+.message {
+    padding: 12px 15px;
+    background-color: rgba(232, 62, 140, 0.1);
+    border: 1px solid rgba(232, 62, 140, 0.4);
+    border-radius: 8px;
+    color: #f7a8b8;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* 7. ANIMATIONS */
+@keyframes fadeInPage { from { opacity: 0; } to { opacity: 1; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }

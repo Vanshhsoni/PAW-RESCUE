@@ -1,0 +1,97 @@
+/* 1. THEME VARIABLES & RESET (Same as admin dashboard) */
+:root {
+    --primary-color: #e83e8c;
+    --bg-color: #121212;
+    --surface-color: #1e1e1e;
+    --heading-color: #ffffff;
+    --text-color: #d1d1d1;
+    --border-color: #2e2e2e;
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Nunito Sans', sans-serif;
+    --border-radius-box: 15px;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+}
+
+/* 2. SHARED ADMIN STYLES (Navigation, Header) */
+.icon-svg { width: 20px; height: 20px; stroke: var(--heading-color); fill: none; stroke-width: 2; }
+.admin-header { background-color: var(--surface-color); border-bottom: 1px solid var(--border-color); padding: 0 1.5rem; position: sticky; top: 0; z-index: 1000; }
+.header-container { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; height: 70px; }
+.logo-group { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.logo-group img { height: 35px; }
+.logo-group h1 { font-size: 1.1rem; letter-spacing: 1px; color: var(--heading-color); font-family: var(--font-heading); }
+.admin-nav { display: flex; align-items: center; gap: 0.5rem; }
+.admin-nav a { color: var(--text-color); text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 700; font-size: 0.9rem; transition: all 0.2s ease-in-out; white-space: nowrap; }
+.admin-nav a:hover { background-color: var(--border-color); color: var(--heading-color); }
+.admin-nav a.active { background-color: var(--primary-color); color: var(--heading-color); }
+.hamburger { display: none; background: none; border: none; padding: 0.5rem; cursor: pointer; }
+
+/* 3. FORM PAGE LAYOUT */
+.container { max-width: 700px; margin: 0 auto; padding: 2.5rem 1.5rem; }
+.form-wrapper { background-color: var(--surface-color); padding: 2.5rem; border-radius: var(--border-radius-box); border: 1px solid var(--border-color); }
+.main-title { font-family: var(--font-heading); color: var(--heading-color); font-size: 2rem; text-align: center; }
+.subtitle { text-align: center; margin: -0.5rem 0 2.5rem 0; font-size: 1rem; color: var(--text-color); }
+
+/* 4. FORM ELEMENTS */
+.form-group { margin-bottom: 1.5rem; }
+.adoption-form label { display: block; margin-bottom: 0.5rem; font-weight: 700; font-size: 0.9rem; color: var(--text-color); }
+.adoption-form input[type="text"],
+.adoption-form textarea {
+    width: 100%; padding: 12px 15px; background-color: var(--bg-color);
+    border: 1px solid var(--border-color); border-radius: 8px;
+    color: var(--heading-color); font-size: 1rem; font-family: var(--font-body);
+    transition: all 0.3s ease;
+}
+.adoption-form input:focus, .adoption-form textarea:focus {
+    outline: none; border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(232, 62, 140, 0.3);
+}
+
+/* 5. CUSTOM FILE UPLOAD STYLES */
+.file-upload-wrapper input[type="file"] { display: none; }
+.file-upload-label {
+    display: flex; flex-direction: column; align-items: center;
+    justify-content: center; padding: 2rem;
+    border: 2px dashed var(--border-color);
+    border-radius: 8px; cursor: pointer;
+    transition: border-color 0.3s ease; text-align: center;
+}
+.file-upload-label:hover { border-color: var(--primary-color); }
+.file-upload-label .icon-svg { width: 40px; height: 40px; stroke: var(--text-color); margin-bottom: 1rem; }
+.file-upload-label span { font-weight: 700; color: var(--heading-color); }
+.file-upload-label small { color: var(--text-color); font-size: 0.8rem; }
+.image-preview-container { display: none; position: relative; margin-top: 1rem; }
+.image-preview { width: 100%; max-height: 300px; object-fit: cover; border-radius: 8px; border: 1px solid var(--border-color); }
+.remove-image-btn {
+    position: absolute; top: 10px; right: 10px;
+    width: 30px; height: 30px; border-radius: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white; border: none; font-size: 1.5rem; line-height: 1;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+}
+.file-upload-wrapper.has-file .file-upload-label { display: none; }
+.file-upload-wrapper.has-file .image-preview-container { display: block; }
+
+/* 6. SUBMIT BUTTON */
+.btn-submit {
+    display: block; width: 100%; padding: 14px 30px;
+    border-radius: 50px; background-color: var(--primary-color);
+    color: var(--heading-color); font-weight: 700; font-size: 1rem;
+    font-family: var(--font-heading); border: none; cursor: pointer;
+    text-align: center; margin-top: 1.5rem; transition: all 0.3s ease;
+}
+.btn-submit:hover { background-color: #c22a72; transform: translateY(-3px); }
+
+/* 7. RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    .admin-nav { display: none; position: absolute; top: 70px; left: 0; width: 100%; background-color: var(--surface-color); flex-direction: column; align-items: stretch; padding: 1rem 0; border-bottom: 1px solid var(--border-color); }
+    .admin-nav.is-active { display: flex; }
+    .admin-nav a { text-align: center; padding: 1rem; border-radius: 0; border-bottom: 1px solid var(--border-color); }
+    .admin-nav a:last-child { border-bottom: none; }
+    .hamburger { display: block; }
+}
