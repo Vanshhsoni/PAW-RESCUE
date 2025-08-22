@@ -8,3 +8,5 @@ django-crispy-forms>=2.0
 
 gunicorn
 whitenoise
+psycopg2-binary
+dj-database-url
