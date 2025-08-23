@@ -1,22 +1,19 @@
-"""
-Django settings for paw_rescue project.
-"""
-
-from pathlib import Path
 import os
+from pathlib import Path
 import dj_database_url
 
-# ---------------- Base ----------------
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", "changeme-in-prod")
+SECRET_KEY = os.environ.get("SECRET_KEY", "dev-secret-key")
 
-DEBUG = os.getenv("DEBUG", "False") == "True"
+DEBUG = os.environ.get("DEBUG", "False") == "True"
 
-ALLOWED_HOSTS = ["*"]  # Render gives random hostnames
+ALLOWED_HOSTS = ["*"]  # change later for security
 
 
-# ---------------- Installed Apps ----------------
+# ------------------------
+# INSTALLED APPS
+# ------------------------
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -24,22 +21,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
-    # Local apps
-    "accounts",
-    "feed",
-    "adminpanel",
-
-    # Cloudinary
     "cloudinary",
     "cloudinary_storage",
+    # your apps here
 ]
 
-
-# ---------------- Middleware ----------------
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # serve static
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -48,11 +36,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
+ROOT_URLCONF = "yourproject.urls"
 
-ROOT_URLCONF = "paw_rescue.urls"
-
-
-# ---------------- Templates ----------------
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
@@ -69,22 +54,34 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = "paw_rescue.wsgi.application"
+WSGI_APPLICATION = "yourproject.wsgi.application"
 
 
-# ---------------- Database (Neon PostgreSQL) ----------------
-DATABASES = {
-    "default": dj_database_url.config(
-        default=os.getenv(
-            "DATABASE_URL",
-            "postgresql://neondb_owner:password@host/neondb?sslmode=require",
-        ),
-        conn_max_age=600,
-    )
-}
+# ------------------------
+# DATABASE
+# ------------------------
+if os.environ.get("RENDER"):
+    # Production (Render + Neon)
+    DATABASES = {
+        "default": dj_database_url.config(
+            default=os.environ.get("DATABASE_URL"),
+            conn_max_age=600,
+            ssl_require=True,
+        )
+    }
+else:
+    # Local Dev (SQLite)
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
+    }
 
 
-# ---------------- Password Validation ----------------
+# ------------------------
+# PASSWORDS
+# ------------------------
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -93,29 +90,33 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# ---------------- Internationalization ----------------
+# ------------------------
+# STATIC & MEDIA
+# ------------------------
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage"
+
+MEDIA_URL = "/media/"
+DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
+
+
+# ------------------------
+# CLOUDINARY CONFIG
+# ------------------------
+CLOUDINARY_STORAGE = {
+    "CLOUD_NAME": os.environ.get("CLOUDINARY_CLOUD_NAME"),
+    "API_KEY": os.environ.get("CLOUDINARY_API_KEY"),
+    "API_SECRET": os.environ.get("CLOUDINARY_API_SECRET"),
+}
+
+
+# ------------------------
+# OTHER SETTINGS
+# ------------------------
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-
-# ---------------- Static & Media ----------------
-STATIC_URL = "/static/"
-STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = BASE_DIR / "staticfiles"
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
-
-# Cloudinary for Media
-DEFAULT_FILE_STORAGE = "cloudinary_storage.storage.MediaCloudinaryStorage"
-CLOUDINARY_STORAGE = {
-    "CLOUD_NAME": os.getenv("CLOUDINARY_CLOUD_NAME", "dhol8imhb"),
-    "API_KEY": os.getenv("CLOUDINARY_API_KEY", "616112266455922"),
-    "API_SECRET": os.getenv("CLOUDINARY_API_SECRET", "LVW7RCMdSQzSFQHrP5di_K58p4w"),
-}
-MEDIA_URL = "/media/"  # Django will still generate correct URLs
-
-
-# ---------------- Default ----------------
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-LOGIN_REDIRECT_URL = "/feed/"
