@@ -22,7 +22,6 @@ class Volunteer(models.Model):
     address = models.TextField()
     about = models.TextField()
     phone = models.CharField(max_length=15)
-    profile_image = CloudinaryField('image', null=True, blank=True)  # Added profile image
     created_at = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
