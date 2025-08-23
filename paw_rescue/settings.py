@@ -104,10 +104,11 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 # Media files → stored in Cloudinary
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME' = 'dhol8imhb',
-    'API_KEY' = '616112266455922',
-    'API_SECRET' = 'LVW7RCMdSQzSFQHrP5di_K58p4w',
+    'CLOUD_NAME': 'dhol8imhb',
+    'API_KEY': '616112266455922',
+    'API_SECRET': 'LVW7RCMdSQzSFQHrP5di_K58p4w',
 }
+
 MEDIA_URL = '/media/'  # still works, but files served from Cloudinary
 
 # ------------------------------------------------
