@@ -109,7 +109,8 @@ CLOUDINARY_STORAGE = {
     'API_SECRET': 'LVW7RCMdSQzSFQHrP5di_K58p4w',
 }
 
-MEDIA_URL = '/media/'  # still works, but files served from Cloudinary
+MEDIA_URL = 'https://res.cloudinary.com/dhol8imhb/'
+  # still works, but files served from Cloudinary
 
 # ------------------------------------------------
 
