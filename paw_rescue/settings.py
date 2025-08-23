@@ -67,13 +67,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'paw_rescue.wsgi.application'
 
-
+import dj_database_url
 # Database
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default = os.environ.get("postgresql://neondb_owner:npg_bGguxX0VRQ7w@ep-green-brook-adn3o7bq-pooler.c-2.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require")
+    )
 }
 
 
