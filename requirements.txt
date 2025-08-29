@@ -16,3 +16,9 @@ whitenoise
 django-cloudinary-storage
 cloudinary
 psycopg2-binary
+razorpay>=1.4
+python-dotenv>=1.0
+pyjwt>=2.9.0
+cryptography>=43.0.1
+setuptools>=75.0.0
+
