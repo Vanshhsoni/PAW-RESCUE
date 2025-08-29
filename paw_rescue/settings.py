@@ -80,6 +80,13 @@ TEMPLATES = [
 WSGI_APPLICATION = 'paw_rescue.wsgi.application'
 
 # ------------------------
+# PAYMENTS
+# ------------------------
+
+RAZORPAY_KEY_ID = "rzp_live_RB48amAw3o864Z"
+RAZORPAY_KEY_SECRET = "s7sOEEAW1lRirmd87VYgaahL"
+
+# ------------------------
 # DATABASE (PostgreSQL Neon)
 # ------------------------
 DATABASES = {

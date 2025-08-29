@@ -98,8 +98,7 @@ def food_view(request):
     # Pass the data to the template
     return render(request, "feed/food.html", {"animals": data})
 
-def donate(request):
-    return render(request, 'feed/donate.html')
+
 
 def location(request):
     return render(request, 'feed/location.html')
