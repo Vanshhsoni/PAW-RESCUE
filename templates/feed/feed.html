@@ -30,7 +30,7 @@
 
     <nav class="secondary-nav-container">
         <div class="secondary-nav">
-            <a href="{% url 'donate' %}">
+            <a href="{% url 'payment:donate_page' %}">
                 <div class="icon">
                     <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <line x1="12" y1="1" x2="12" y2="23"></line><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
@@ -38,19 +38,19 @@
                 </div>
                 Donate
             </a>
-             <a href="{% url 'location' %}">
+             <a href="{% url 'feed:location' %}">
                 <div class="icon">
                     <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
                 </div>
                 Rescue Center
             </a>
-            <a href="{% url 'health' %}">
+            <a href="{% url 'feed:health' %}">
                 <div class="icon">
                     <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
                 </div>
                 Treatment & Health
             </a>
-            <a href="{% url 'food' %}">
+            <a href="{% url 'feed:food' %}">
                 <div class="icon">
                     <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M16 22a2 2 0 0 0 2-2V7l-5-5H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10Z"/>
@@ -118,25 +118,25 @@
     </main>
 
     <nav class="primary-nav">
-        <a href="{% url 'feed' %}" class="active">
+        <a href="{% url 'feed:feed' %}" class="active">
             <div class="icon">
                 <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
             </div>
             <span class="text">Dashboard</span>
         </a>
-        <a href="{% url 'adoption_public' %}">
+        <a href="{% url 'feed:adoption_public' %}">
             <div class="icon">
                 <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
             </div>
             <span class="text">Adopt</span>
         </a>
-        <a href="{% url 'volunteer_form' %}">
+        <a href="{% url 'feed:volunteer_form' %}">
             <div class="icon">
                  <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="m22 11-3-3m0 0-3 3m3-3v12"/></svg>
             </div>
             <span class="text">Volunteer</span>
         </a>
-        <a href="{% url 'report' %}">
+        <a href="{% url 'feed:report' %}">
             <div class="icon">
                 <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><polyline points="14,2 14,8 20,8"/></svg>
             </div>
