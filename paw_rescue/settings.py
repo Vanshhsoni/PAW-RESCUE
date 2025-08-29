@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'feed',
     'adminpanel',
-    'payments',
+    'payment',
 ]
 
 # ------------------------

@@ -10,7 +10,7 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),  # Accounts app URLs (login/signup/logout)
     path('feed/', include('feed.urls')),  # Feed app URLs
     path('adminpanel/', include('adminpanel.urls')),  # Adminpanel app URLs
-    path('payments/', include('payments.urls')),
+    path('payment/', include('payment.urls')),
 ]
 
 if settings.DEBUG:
