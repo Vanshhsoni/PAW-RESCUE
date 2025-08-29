@@ -120,7 +120,7 @@
             "description": "Donation",
             "order_id": "{{ razorpay_order_id }}",
             "handler": function (response){
-                fetch("{% url 'payment_success' %}", {
+                fetch("{% url 'payment:payment_success' %}", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(response)
