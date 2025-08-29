@@ -16,7 +16,7 @@
             <img src="{% static 'images/logo.png' %}" alt="Paw Rescue Logo">
             <h1>PAW RESCUE</h1>
         </a>
-        <form method="POST" action="{% url 'logout' %}">
+        <form method="POST" action="{% url 'accounts:logout' %}">
             {% csrf_token %}
             <button type="submit" class="btn-logout">
                 <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

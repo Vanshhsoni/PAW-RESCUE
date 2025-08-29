@@ -17,15 +17,25 @@ def report(request):
 
     return render(request, 'feed/report.html', {'form': form})  # Render the report form page
 
+from payment.models import Donation
+from django.db.models import Sum
+
 @login_required
 def feed(request):
     reports = Report.objects.all()
-    report_count = reports.count()  # Count the total number of reports
     volunteers = Volunteer.objects.all()
-    volunteer_count=volunteers.count()
     adoptions = Adoption.objects.all()
-    adoption_requests_count=adoptions.count()
-    return render(request, 'feed/feed.html', {'reports': reports, 'report_count': report_count, 'volunteer_count':volunteer_count, 'adoption_requests_count':adoption_requests_count})
+
+    total_donations = Donation.objects.aggregate(Sum("amount"))["amount__sum"] or 0
+
+    context = {
+        "reports": reports,
+        "report_count": reports.count(),
+        "volunteer_count": volunteers.count(),
+        "adoption_requests_count": adoptions.count(),
+        "total_donations": total_donations,
+    }
+    return render(request, "feed/feed.html", context)
 
 from django.shortcuts import render
 from adminpanel.models import Adoption

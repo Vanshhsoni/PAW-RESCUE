@@ -8,7 +8,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),  # Admin panel
     path('', landing_page, name='landing_page'),  # Landing page route
     path('accounts/', include('accounts.urls')),  # Accounts app URLs (login/signup/logout)
-    path('feed/', include(('feed.urls', 'feed'), namespace='feed')),
+    path('feed/', include('feed.urls')),
     path('adminpanel/', include('adminpanel.urls')),  # Adminpanel app URLs
     path('payment/', include('payment.urls')),
 ]

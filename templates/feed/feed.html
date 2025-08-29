@@ -16,7 +16,7 @@
             <img src="{% static 'images/logo.png' %}" alt="Paw Rescue Logo">
             <h1>PAW RESCUE</h1>
         </a>
-        <form method="POST" action="{% url 'logout' %}">
+        <form method="POST" action="{% url 'accounts:logout' %}">
             {% csrf_token %}
             <button type="submit" class="btn-logout">
                 <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -91,9 +91,10 @@
                 <div class="card-icon">
                     <svg class="icon-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path fill-rule="evenodd" d="M14.25 2.25c-.247 0-.486.02-.724.058L12 3.828l-1.526-1.512a48.847 48.847 0 00-1.448-.058A4.5 4.5 0 004.5 6.75v1.508c0 .843.253 1.63.708 2.321L12 21l6.792-10.421a4.5 4.5 0 00.708-2.321V6.75a4.5 4.5 0 00-4.5-4.5z" clip-rule="evenodd" /></svg>
                 </div>
-                <h3>0 <span class="currency">INR</span></h3>
+                <h3>{{ total_donations }} <span class="currency">INR</span></h3>
                 <p>Donations</p>
             </div>
+            
         </section>
 
         <section class="feed">
